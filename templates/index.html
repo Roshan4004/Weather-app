@@ -1,0 +1,93 @@
+{%load static%}
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+  <title>Weather</title>
+  <style>
+  input, .btn{
+        
+        max-width: 100%;
+        padding: .5rem;
+        border-radius: 10px;
+        outline: none;
+        border: 1px solid white;
+      }
+  .btn:hover{
+      transform: translateY(-3px);
+      background-color:#04009A ;
+      color:#fff ;
+    }
+
+  </style>
+</head>
+<body style="background-color: black;">
+  
+
+  <div class="form" >
+    <form action="" method="POST">
+        {%csrf_token%}
+      <input type="text" name="city" placeholder="Enter city" required="required">
+      <button type="submit" class="btn">Enter</button>
+      {% for message in messages %}
+      <p style="border-style: double;width: 30%;color: white;">{{message}}</p>
+      {% endfor %}
+    </form>
+  </div>
+
+  <div  style="
+    padding: 1%;
+    border-radius: 25px;
+    margin-top: 2%;
+    float: right;
+    max-width: 100%;
+    width:45%;
+    background-color:grey ;
+    height:40%;
+    line-height:3;
+    position: relative;
+    max-width: 100%;
+    font-size: larger;">
+    <div style="width: 100%;margin-right: 40%;max-width: 100%;">
+      Sunrise:<br>
+      <img style=" width:40% ;margin-left: 20%" src="{% static 'img/sunrise.png'%}"><br>{{sunr}} (UTC)
+    </div>
+    <hr>
+    <div style="width: 100%;max-width: 100%;">
+      Sunset:<br>
+      <img style="width:40% ;margin-left: 20%" src="{% static 'img/sunset.png'%}"><br> {{suns}} (UTC)
+    </div>
+  </div>
+  <div style="
+  padding: 2%;
+  background-color:cyan;
+  border-radius: 25px;
+  max-width: 100%;
+  margin-top:2%;
+  display:flex;
+  height: 30%;
+  width: 47%;
+  margin-bottom: 2%;">
+  
+    <div style="text-align: center; " >
+      <p style="font-size: 200%; margin-left: 10%;"> Country: <u>{{country}}</u> <br>
+                                                    Temperature: <u>{{temp}}&deg;C</u><br>
+                                                    Date(UTC): <u>{{day}}</u><br>
+      <br><img  src="http://openweathermap.org/img/w/{{icon}}.png"><u>{{description}}</u></p>
+    </div>
+  </div>
+  <div style="font-size: 250%; padding: 2%;border-radius: 25px; color: white; background-color:black; border-style: double ;max-width: 100%;width: 47%;height: 40%;">
+    Feels_like: <u>{{feels}}°C</u><br>
+    Pressure: <u>{{pressure}}</u><br>
+    Humidity 🌧️ : <u>{{humidity}}%</u><br>
+    {% if humidity >= 75 %}
+    <img style="margin-top: 10%; width:50% ;" src="{%static 'img/willrain.jpg'%}">
+    {%else%}
+    <img style="margin-top: 10%; width:50% ;" src="{%static 'img/wontrain.jpg'%}">
+    {%endif%}
+  </div>
+      
+</body>
+
+</html>
