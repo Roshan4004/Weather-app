@@ -11,7 +11,7 @@ def index(request):
             city=request.POST['city']
         else:
             city='Nepal'
-        apikey='f5c6ba060f3362674b261b48d58b492e'
+#         apikey='......................'
         URL='http://api.openweathermap.org/data/2.5/weather'
         PARAMS={'q':city,'appid':apikey,'units':'metric'}
         r=requests.get(url=URL,params=PARAMS)
