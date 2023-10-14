@@ -35,6 +35,7 @@
       {% endfor %}
     </form>
   </div>
+  {% if msg == 'success' %}
 
   <div  style="
     padding: 1%;
@@ -87,7 +88,13 @@
     <img style="margin-top: 10%; width:50% ;" src="{%static 'img/wontrain.jpg'%}">
     {%endif%}
   </div>
-      
+  {%else%}
+  <center>
+    <div style="margin-top: 10%;">
+      <p style="color:white;font-size:5vh;" ><span style="color: red;">Location isn't allowed.</span><br>Please allow location to know weather of your place!</p>
+    </div>
+  </center>
+  {%endif%}
 </body>
 
 </html>
