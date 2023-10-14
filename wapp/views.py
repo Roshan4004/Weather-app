@@ -3,6 +3,10 @@ import requests
 import pytz
 from datetime import datetime,timezone
 from django.contrib import messages
+import environ
+
+env=environ.Env()
+environ.Env.read_env()
 
 def ipInfo(addr=''):
     from urllib.request import urlopen
@@ -30,7 +34,7 @@ def index(request):
             return render(request,'index.html',context)
         
 def maindata(city):
-    apikey='f5c6ba060f3362674b261b48d58b492e'
+    apikey=env('API_KEY')
     URL='http://api.openweathermap.org/data/2.5/weather'
     PARAMS={'q':city,'appid':apikey,'units':'metric'}
     r=requests.get(url=URL,params=PARAMS)
